@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- Allocate Slot Servlet -->
+    <servlet>
+        <servlet-name>allocate</servlet-name>
+        <servlet-class>com.parking.servlet.AllocateServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>allocate</servlet-name>
+        <url-pattern>/allocate</url-pattern>
+    </servlet-mapping>
+
+    <!-- Release Slot Servlet -->
+    <servlet>
+        <servlet-name>release</servlet-name>
+        <servlet-class>com.parking.servlet.ReleaseServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>release</servlet-name>
+        <url-pattern>/release</url-pattern>
+    </servlet-mapping>
+
+    <!-- Welcome Page -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+</web-app>

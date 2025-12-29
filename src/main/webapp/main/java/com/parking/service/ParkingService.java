@@ -1,17 +1,22 @@
 package com.parking.service;
 
 import com.parking.dao.ParkingDAO;
-import com.parking.exception.SlotNotAvailableException;
-import com.parking.model.Vehicle;
+import com.parking.model.Car;
 
 public class ParkingService {
 
-    SlotAllocator allocator = new SlotAllocator();
-    ParkingDAO dao = new ParkingDAO();
+    private final ParkingDAO dao = new ParkingDAO();
 
-    public int park(Vehicle v) throws Exception {
-        int slot = allocator.allocate();
-        dao.saveAllocation(v.getNumber(), slot);
-        return slot;
+    // Allocate slot
+    public synchronized int park(Car car) throws Exception {
+        if (car == null || car.getNumber() == null || car.getNumber().isEmpty()) {
+            throw new Exception("Invalid car number");
+        }
+        return dao.allocate(car.getNumber());
+    }
+
+    // Release slot
+    public synchronized boolean release(String vehicleNumber) throws Exception {
+        return dao.release(vehicleNumber);
     }
 }
